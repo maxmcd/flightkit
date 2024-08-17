@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for docker-for-kurt-green-shadow-9194 on 2024-08-14T15:27:36-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'docker-for-kurt-green-shadow-9194'
+primary_region = 'ewr'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+
+[build]
+
+[[mounts]]
+source = 'data'
+destination = '/data'
+
+[[services]]
+internal_port = 2375
+protocol = "tcp"
+
+[[services.ports]]
+port = "2375"
+
+[[services.tcp_checks]]
+grace_period = "1s"
+interval = "15s"
+restart_limit = 0
+timeout = "2s"
+
+[[vm]]
+memory = '1gb'
+cpu_kind = 'shared'
+cpus = 1
